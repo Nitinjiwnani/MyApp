@@ -47,11 +47,21 @@ class _RandomwordsState extends State<RandomWords> {
             _suggestions[index].asPascalCase,
             style: _biggerFont,
           ),
-          trailing: Icon(  //New from here
+          trailing: Icon(
+            //New from here
             alreadySaved ? Icons.favorite : Icons.favorite_border,
             color: alreadySaved ? Colors.red : null,
             semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
-          ), //To here...
+          ),
+          onTap: () {
+            setState(() {
+              if (alreadySaved) {
+                _saved.remove(_suggestions[index]);
+              } else {
+                _saved.add(_suggestions[index]);
+              }
+            }); //To here... 
+          }, 
         );
       },
     );
